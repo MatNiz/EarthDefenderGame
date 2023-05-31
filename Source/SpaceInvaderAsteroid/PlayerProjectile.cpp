@@ -21,7 +21,7 @@ void APlayerProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 
-    StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &AMyActor::OnOverlapBegin);
+ //   StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &AMyActor::OnOverlapBegin);
 
     CurrentTime = 0;
 }
