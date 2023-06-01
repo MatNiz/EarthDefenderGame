@@ -37,6 +37,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float TimeToChangeDirection = 3; //in seconds
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float TimeToJump = 20; //in seconds
+
 	UPROPERTY(EditAnywhere, Category = "Shooting")
 		float EnemyShootingInterval = 1; //in seconds
 
@@ -46,6 +49,7 @@ protected:
 	float CurrentAngleInRadians;
 	float CurrentTimeMove;
 	float CurrentTimeShoot;
+	float CurrentTimeJump;
 
 	bool MoveClockwise;
 

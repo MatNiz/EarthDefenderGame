@@ -25,6 +25,7 @@ void AEnemy::BeginPlay()
 
 	CurrentTimeMove = 0;
 	CurrentTimeShoot = 0;
+	CurrentTimeJump = 0;
 	MoveClockwise = 1;
 	CurrentAngleInRadians = FMath::DegreesToRadians(CurrentAngle);
 
@@ -56,6 +57,11 @@ void AEnemy::Move(float DeltaTime)
 	{
 		MoveClockwise = !MoveClockwise;
 		CurrentTimeMove = 0;
+	}
+
+	if (CurrentTimeJump >= TimeToJump)
+	{
+		CurrentTimeJump = 0;
 		EnemyRadius -= 100;
 
 		if (EnemyRadius <= 200) // MyPlayer.GetDefaultObject()->GetRadius()
@@ -65,10 +71,13 @@ void AEnemy::Move(float DeltaTime)
 		}
 	}
 
+
+
 	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.01f) * EnemyRadius;
 	SetActorLocation(NewLocation);
 
 	CurrentTimeMove += DeltaTime;
+	CurrentTimeJump += DeltaTime;
 
 //	FString FloatString = FString::Printf(TEXT("%.2f"), CurrentTimeMove);
 //	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
