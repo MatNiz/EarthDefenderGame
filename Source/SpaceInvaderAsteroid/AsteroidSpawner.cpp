@@ -93,8 +93,8 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 
 
 	CurrentNumberOfAsteroids = AAsteroid::GetNumberOfAsteroids();
-	FString FloatString = FString::Printf(TEXT("%d"), CurrentNumberOfAsteroids);
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
+//	FString FloatString = FString::Printf(TEXT("%d"), CurrentNumberOfAsteroids);
+//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
 	CurrentTime += DeltaTime;
 }

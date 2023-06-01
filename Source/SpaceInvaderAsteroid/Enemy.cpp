@@ -65,7 +65,7 @@ void AEnemy::Move(float DeltaTime)
 		}
 	}
 
-	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.1f) * EnemyRadius;
+	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.01f) * EnemyRadius;
 	SetActorLocation(NewLocation);
 
 	CurrentTimeMove += DeltaTime;

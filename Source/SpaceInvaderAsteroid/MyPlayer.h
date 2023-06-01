@@ -26,7 +26,7 @@ protected:
 		TSubclassOf<class APlayerProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float PlayerRadius = 300; //in cm
+		float PlayerRadius = 200; //in cm
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 		float PlayerMovementSpeed = 0.02;

@@ -32,7 +32,7 @@ protected:
 		float CurrentAngle = 0; //in degrees
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyMovementSpeed = 0.1;
+		float EnemyMovementSpeed = 0.03;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float TimeToChangeDirection = 3; //in seconds
@@ -41,7 +41,7 @@ protected:
 		float EnemyShootingInterval = 1; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		int EnemyChanceToShoot = 20; //in %
+		int EnemyChanceToShoot = 5; //in %
 
 	float CurrentAngleInRadians;
 	float CurrentTimeMove;

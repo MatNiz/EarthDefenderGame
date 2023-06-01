@@ -23,13 +23,13 @@ protected:
 		TSubclassOf<class AAsteroid> AsteroidClass;
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		float SpawnInterval = 1;// in seconds
+		float SpawnInterval = 3;// in seconds
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
 		float SpawnLimit = 15;
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		int MapSize = 1000;// in cm
+		int MapSize = 1500;// in cm
 
 	int CurrentNumberOfAsteroids;
 	float CurrentTime;

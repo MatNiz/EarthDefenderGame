@@ -32,7 +32,7 @@ protected:
 		float AsteroidLifeTime = 6;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		int MapSize = 1000;
+		int MapSize = 1500;
 	
 	float CurrentTime;
 	int AsteroidSize;
