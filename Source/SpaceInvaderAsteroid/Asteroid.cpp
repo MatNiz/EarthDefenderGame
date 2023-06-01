@@ -9,8 +9,12 @@ AAsteroid::AAsteroid()
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
 
+ //   Asteroids.Add(this);
+
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
     RootComponent = StaticMeshComponent;
+    NumberOfAsteroids += 1;
+
 }
 
 
@@ -18,6 +22,7 @@ AAsteroid::AAsteroid()
 void AAsteroid::BeginPlay()
 {
     Super::BeginPlay();
+
  
 }
 
@@ -50,6 +55,7 @@ void AAsteroid::Decay()
 
     if (AsteroidSize == 1)
     {
+        AAsteroid::NumberOfAsteroids--;
         Destroy();
     }
     else
@@ -92,6 +98,11 @@ void AAsteroid::SetMeshSize()
     {
         StaticMeshComponent->SetRelativeScale3D(FVector(0.7f, 0.7f, 0.7f));
     }
+}
+
+int AAsteroid::GetNumberOfAsteroids()
+{
+    return AAsteroid::NumberOfAsteroids;
 }
 
 /*

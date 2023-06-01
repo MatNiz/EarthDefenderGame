@@ -25,6 +25,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
 		float SpawnLimit = 10;
 
+	int CurrentNumberOfAsteroids = 0;
+
 	int MapSize = 1000;
 
 	float CurrentTime;

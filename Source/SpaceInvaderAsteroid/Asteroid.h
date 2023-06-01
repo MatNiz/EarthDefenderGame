@@ -21,7 +21,7 @@ protected:
 
 
 	UPROPERTY(EditAnywhere, Category = "Speed")
-		float AsteroidSpeed = 200;
+		float AsteroidSpeed = 100;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* StaticMeshComponent;
@@ -31,11 +31,14 @@ protected:
 
 	int MapSize = 1000;
 
-	float AsteroidLifeTime = 5;
+	UPROPERTY(EditAnywhere, Category = "Speed")
+		float AsteroidLifeTime = 6;
+
 	float CurrentTime = 0;
 
 	int AsteroidSize;
 
+	static int NumberOfAsteroids;
 
 public:
 	// Called every frame
@@ -56,10 +59,9 @@ public:
 		this->AsteroidSize = Size;
 	}
 
+	static int GetNumberOfAsteroids();
 
 };
-
-
 
 /*
 
