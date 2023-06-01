@@ -4,6 +4,7 @@
 #include "AsteroidSpawner.h"
 #include "PlayerProjectile.h"
 #include "EnemyProjectile.h"
+#include "Asteroid.h"
 
 // Sets default values
 AAsteroidSpawner::AAsteroidSpawner()
@@ -32,7 +33,7 @@ void AAsteroidSpawner::Tick(float DeltaTime)
 
 void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 {
-	if (0 < SpawnLimit && CurrentTime >= SpawnInterval) //docelowo zamiast 0 liczba wszystkich asteroid
+	if (0 < SpawnLimit && CurrentTime >= SpawnInterval) //docelowo zamiast 0 liczba wszystkich asteroid, find actor by class a potem policz ile ich jest
 	{
 		//choosing location and rotation to spawn
 		float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
@@ -67,15 +68,15 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 		float randNum3 = rand() % 3 + 1;
 
 		if (randNum3 == 1) {
-			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 
 		}
 		else if (randNum3 == 2) {
-			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 
 		}
 		else{
-			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 		}
 
 
