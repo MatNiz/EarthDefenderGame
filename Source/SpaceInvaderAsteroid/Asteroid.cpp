@@ -37,7 +37,7 @@ void AAsteroid::Tick(float DeltaTime)
 
     if (CurrentTime >= AsteroidLifeTime)
     {
-        Decay();
+        //Decay();
         CurrentTime = 0;
     }
 }

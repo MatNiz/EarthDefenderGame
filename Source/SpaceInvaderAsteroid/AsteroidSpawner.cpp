@@ -33,7 +33,7 @@ void AAsteroidSpawner::Tick(float DeltaTime)
 
 void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 {
-	if (CurrentNumberOfAsteroids < SpawnLimit && CurrentTime >= SpawnInterval)
+	if (CurrentTime >= SpawnInterval) //CurrentNumberOfAsteroids < SpawnLimit && 
 	{
 		//choosing location and rotation to spawn
 		float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
