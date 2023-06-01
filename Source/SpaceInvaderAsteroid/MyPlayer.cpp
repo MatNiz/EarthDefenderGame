@@ -56,9 +56,9 @@ void AMyPlayer::Move(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		CurrentAngle += Value * MovementSpeed;
+		CurrentAngle += Value * PlayerMovementSpeed;
 
-		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.1f) * Radius;
+		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.1f) * PlayerRadius;
 
 		SetActorLocation(NewLocation);
 
@@ -74,7 +74,7 @@ void AMyPlayer::Rotate(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		CurrentYRotation += Value * RotationSpeed;
+		CurrentYRotation += Value * PlayerRotationSpeed;
 
 		FRotator NewRotation = FRotator(0, CurrentYRotation, 0);
 
@@ -89,5 +89,5 @@ void AMyPlayer::Rotate(float Value)
 
 float AMyPlayer::GetRadius()
 {
-	return Radius;
+	return PlayerRadius;
 }

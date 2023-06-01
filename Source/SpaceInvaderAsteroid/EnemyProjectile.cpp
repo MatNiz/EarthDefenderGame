@@ -43,12 +43,12 @@ void AEnemyProjectile::Move(float DeltaTime)
 
     FVector Direction = UKismetMathLibrary::Normal(DirectionToOrigin);
     
-    Location += Direction * DeltaTime * ProjectileSpeed;
+    Location += Direction * DeltaTime * EnemyProjectileSpeed;
     SetActorLocation(Location);
 
     CurrentTime += DeltaTime;
 
-    if (CurrentTime >= ProjectileLifeTime)
+    if (CurrentTime >= EnemyProjectileLifeTime)
     {
         Destroy();
     }

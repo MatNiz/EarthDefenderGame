@@ -20,7 +20,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		float SpawnInterval = 7;// in seconds
+		float SpawnInterval = 1;// in seconds
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
 		float SpawnLimit = 10;
@@ -29,7 +29,7 @@ protected:
 
 	float CurrentTime;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditAnywhere, Category = "AsteroidClass")
 		TSubclassOf<class AAsteroid> AsteroidClass;
 
 public:	

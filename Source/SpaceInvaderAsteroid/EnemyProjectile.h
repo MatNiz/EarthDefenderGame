@@ -20,10 +20,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float ProjectileSpeed = 500;
+		float EnemyProjectileSpeed = 500;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float ProjectileLifeTime = 10; //in seconds
+		float EnemyProjectileLifeTime = 10; //in seconds
 
 	float CurrentTime;
 

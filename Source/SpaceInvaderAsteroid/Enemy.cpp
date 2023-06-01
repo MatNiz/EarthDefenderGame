@@ -53,27 +53,27 @@ void AEnemy::Move(float DeltaTime)
 
 	if (MoveClockwise)
 	{
-		CurrentAngleInRadians += DeltaTime * MovementSpeed;
+		CurrentAngleInRadians += DeltaTime * EnemyMovementSpeed;
 	}
 	else
 	{
-		CurrentAngleInRadians -= DeltaTime * MovementSpeed;
+		CurrentAngleInRadians -= DeltaTime * EnemyMovementSpeed;
 	}
 
 	if (CurrentTimeMove >= TimeToChangeDirection)
 	{
 		MoveClockwise = !MoveClockwise;
 		CurrentTimeMove = 0;
-		Radius -= 100;
+		EnemyRadius -= 100;
 
-		if (Radius <= 200) // MyPlayer.GetDefaultObject()->GetRadius()
+		if (EnemyRadius <= 200) // MyPlayer.GetDefaultObject()->GetRadius()
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, "Koniec gry");
 
 		}
 	}
 
-	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.1f) * Radius;
+	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.1f) * EnemyRadius;
 	SetActorLocation(NewLocation);
 
 	CurrentTimeMove += DeltaTime;
@@ -86,17 +86,19 @@ void AEnemy::Move(float DeltaTime)
 void AEnemy::Shoot(float DeltaTime)
 {
 
-	if (CurrentTimeShoot >= ShootingInterval)
+	if (CurrentTimeShoot >= EnemyShootingInterval)
 	{
 		float MinValue = 0.0f;
 		float MaxValue = 100.0f;
 
-		float RandomNumber = RandStream.FRandRange(MinValue, MaxValue);
+//		float RandomNumber = RandStream.FRandRange(MinValue, MaxValue);
+
+		int RandomNumber = FMath::RandRange(0, 100);
 
 //		FString FloatString = FString::Printf(TEXT("%.2f"), RandomNumber);
 //		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
-		if (ChanceToShoot >= RandomNumber)
+		if (EnemyChanceToShoot >= RandomNumber)
 		{
 			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, GetActorTransform());
 		}

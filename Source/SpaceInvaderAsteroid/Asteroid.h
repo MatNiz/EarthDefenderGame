@@ -10,8 +10,8 @@ UCLASS()
 class SPACEINVADERASTEROID_API AAsteroid : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AAsteroid();
 
@@ -21,21 +21,46 @@ protected:
 
 
 	UPROPERTY(EditAnywhere, Category = "Speed")
-		float AsteroidSpeed = 300;
+		float AsteroidSpeed = 200;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* StaticMeshComponent;
 
+	UPROPERTY(EditAnywhere, Category = "AsteroidClass")
+		TSubclassOf<class AAsteroid> AsteroidClass;
+
 	int MapSize = 1000;
 
+	float AsteroidLifeTime = 5;
+	float CurrentTime = 0;
 
-public:	
+	int AsteroidSize;
+
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	//virtulana metoda po otrzymaniu obrazen od gracza
-//	virtual void GetShoot() = 0;
+	void Decay();
 
 	void Move(float DeltaTime);
 
+	void SetMeshSize();
+
+	int GetAsteroidSize()
+	{
+		return this->AsteroidSize;
+	}
+	void SetAsteroidSize(int Size)
+	{
+		this->AsteroidSize = Size;
+	}
+
+
 };
+
+
+
+/*
+
+*/

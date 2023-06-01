@@ -37,7 +37,7 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 	{
 		//choosing location and rotation to spawn
 		float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
-		float randNum2 = rand() % 4 + 1; 	//Random number between 1 and 4 - choose wich quarter
+		float randNum2 = FMath::RandRange(1, 4);; 	//Random number between 1 and 4 - choose wich quarter
 
 		FRotator SpawnRotation = FRotator(0, randNum1, randNum1);
 
@@ -60,23 +60,34 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 
 		}
 
-		FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), SpawnLocation.X, SpawnLocation.Y, SpawnLocation.Z);
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
+//		FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), SpawnLocation.X, SpawnLocation.Y, SpawnLocation.Z);
+//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
 
 		//choosing size of asteroid
-		float randNum3 = rand() % 3 + 1;
+		int randNum3 = FMath::RandRange(1, 3);
 
 		if (randNum3 == 1) {
-			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+			AAsteroid* NewAsteroid1 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+			NewAsteroid1->SetAsteroidSize(1);
+
+			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "Small");
+
 
 		}
 		else if (randNum3 == 2) {
-			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+
+			AAsteroid* NewAsteroid1 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+			NewAsteroid1->SetAsteroidSize(2);
+
+			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "medium");
 
 		}
 		else{
-			GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+			AAsteroid* NewAsteroid1 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+			NewAsteroid1->SetAsteroidSize(3);
+
+			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "big");
 		}
 
 

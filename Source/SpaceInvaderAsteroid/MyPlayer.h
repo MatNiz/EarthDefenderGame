@@ -27,16 +27,16 @@ protected:
 
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float Radius = 400; //in cm
+		float PlayerRadius = 300; //in cm
 
 	float CurrentAngle;
 	float CurrentYRotation;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float MovementSpeed = 0.02;
+		float PlayerMovementSpeed = 0.02;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float RotationSpeed = 1;
+		float PlayerRotationSpeed = 1;
 
 
 	void Shoot();

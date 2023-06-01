@@ -29,7 +29,7 @@ protected:
 		UStaticMeshComponent* StaticMeshComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float Radius = 800; //in cm
+		float EnemyRadius = 800; //in cm
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float CurrentAngle = 0; //in degrees
@@ -37,16 +37,16 @@ protected:
 	float CurrentAngleInRadians;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float MovementSpeed = 0.1;
+		float EnemyMovementSpeed = 0.1;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float TimeToChangeDirection = 3; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		float ShootingInterval = 1; //in seconds
+		float EnemyShootingInterval = 1; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		float ChanceToShoot = 20; //in %
+		int EnemyChanceToShoot = 20; //in %
 
 	float CurrentTimeMove;
 	float CurrentTimeShoot;
