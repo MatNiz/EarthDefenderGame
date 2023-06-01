@@ -16,9 +16,6 @@ AEnemy::AEnemy()
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	RootComponent = StaticMeshComponent;
 
-	
-	
-
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +31,6 @@ void AEnemy::BeginPlay()
 	CurrentAngleInRadians = FMath::DegreesToRadians(CurrentAngle);
 
 //	FRandomStream RandStream;
-
 	
 }
 
@@ -44,7 +40,6 @@ void AEnemy::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	Move(DeltaTime);
-
 	Shoot(DeltaTime);
 }
 
@@ -71,15 +66,13 @@ void AEnemy::Move(float DeltaTime)
 		CurrentTimeMove = 0;
 		Radius -= 100;
 
-		if (Radius <= 300) // MyPlayer.GetDefaultObject()->GetRadius()
+		if (Radius <= 200) // MyPlayer.GetDefaultObject()->GetRadius()
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, "Koniec gry");
 
 		}
 	}
 
-
-	
 	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.1f) * Radius;
 	SetActorLocation(NewLocation);
 

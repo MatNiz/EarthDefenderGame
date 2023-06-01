@@ -40,9 +40,7 @@ protected:
 		float MovementSpeed = 0.1;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float TimeToChangeDirection = 20; //in seconds
-
-
+		float TimeToChangeDirection = 3; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
 		float ShootingInterval = 1; //in seconds
