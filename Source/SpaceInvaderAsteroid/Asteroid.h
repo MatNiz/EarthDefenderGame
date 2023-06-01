@@ -19,25 +19,23 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
-	UPROPERTY(EditAnywhere, Category = "Speed")
-		float AsteroidSpeed = 100;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* StaticMeshComponent;
 
 	UPROPERTY(EditAnywhere, Category = "AsteroidClass")
 		TSubclassOf<class AAsteroid> AsteroidClass;
 
-	int MapSize = 1000;
+	UPROPERTY(EditAnywhere, Category = "Parameters")
+		float AsteroidSpeed = 100;
 
-	UPROPERTY(EditAnywhere, Category = "Speed")
+	UPROPERTY(EditAnywhere, Category = "Parameters")
 		float AsteroidLifeTime = 6;
 
-	float CurrentTime = 0;
-
+	UPROPERTY(EditAnywhere, Category = "Parameters")
+		int MapSize = 1000;
+	
+	float CurrentTime;
 	int AsteroidSize;
-
 	static int NumberOfAsteroids;
 
 public:
@@ -50,19 +48,10 @@ public:
 
 	void SetMeshSize();
 
-	int GetAsteroidSize()
-	{
-		return this->AsteroidSize;
-	}
-	void SetAsteroidSize(int Size)
-	{
-		this->AsteroidSize = Size;
-	}
+	int GetAsteroidSize();
+	void SetAsteroidSize(int Size);
 
 	static int GetNumberOfAsteroids();
-
 };
 
-/*
-
-*/
+int AAsteroid::NumberOfAsteroids = 0;

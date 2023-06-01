@@ -4,6 +4,7 @@
 #include "MyPlayer.h"
 #include "PlayerProjectile.h"
 #include "Enemy.h"
+#include "Asteroid.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -13,7 +14,6 @@ AMyPlayer::AMyPlayer()
 
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	RootComponent = StaticMeshComponent;
-
 }
 
 // Called when the game starts or when spawned
@@ -40,7 +40,6 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayer::Shoot);
 	PlayerInputComponent->BindAxis("Move", this, &AMyPlayer::Move);
 	PlayerInputComponent->BindAxis("Rotate", this, &AMyPlayer::Rotate);
-
 }
 
 void AMyPlayer::Shoot()
@@ -61,14 +60,8 @@ void AMyPlayer::Move(float Value)
 		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.1f) * PlayerRadius;
 
 		SetActorLocation(NewLocation);
-
-
-		//		FString FloatString = FString::Printf(TEXT("%.2f"), CurrentAngle);
-		//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 	}
 }
-
 
 void AMyPlayer::Rotate(float Value)
 {
@@ -79,11 +72,6 @@ void AMyPlayer::Rotate(float Value)
 		FRotator NewRotation = FRotator(0, CurrentYRotation, 0);
 
 		SetActorRotation(NewRotation);
-
-
-		//		FString FloatString = FString::Printf(TEXT("%.2"), CurrentYRotation);
-		//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 	}
 }
 

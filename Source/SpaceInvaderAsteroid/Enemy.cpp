@@ -25,13 +25,9 @@ void AEnemy::BeginPlay()
 
 	CurrentTimeMove = 0;
 	CurrentTimeShoot = 0;
-
 	MoveClockwise = 1;
-
 	CurrentAngleInRadians = FMath::DegreesToRadians(CurrentAngle);
 
-//	FRandomStream RandStream;
-	
 }
 
 // Called every frame
@@ -46,10 +42,6 @@ void AEnemy::Tick(float DeltaTime)
 void AEnemy::Move(float DeltaTime)
 {
 	FVector Location = GetActorLocation();
-
-//	FString FloatString = FString::Printf(TEXT("%.2f"), CurrentAngleInRadians);
-//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 
 	if (MoveClockwise)
 	{
@@ -85,24 +77,14 @@ void AEnemy::Move(float DeltaTime)
 
 void AEnemy::Shoot(float DeltaTime)
 {
-
 	if (CurrentTimeShoot >= EnemyShootingInterval)
 	{
-		float MinValue = 0.0f;
-		float MaxValue = 100.0f;
-
-//		float RandomNumber = RandStream.FRandRange(MinValue, MaxValue);
-
 		int RandomNumber = FMath::RandRange(0, 100);
-
-//		FString FloatString = FString::Printf(TEXT("%.2f"), RandomNumber);
-//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
 		if (EnemyChanceToShoot >= RandomNumber)
 		{
 			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, GetActorTransform());
 		}
-
 		CurrentTimeShoot = 0;
 	}
 

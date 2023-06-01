@@ -19,27 +19,22 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		UStaticMeshComponent* StaticMeshComponent;
+
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float ProjectileSpeed = 2000;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float ProjectileLifeTime = 3; //in seconds
+
 	float CurrentTime;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UStaticMeshComponent* StaticMeshComponent;
-
-//	void APlayerProjectile::OnCollisionDetected(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-
-	UFUNCTION()
-	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-
 
 	void Move(float DeltaTime);
 

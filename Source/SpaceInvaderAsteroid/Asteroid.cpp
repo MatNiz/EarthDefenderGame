@@ -23,7 +23,7 @@ void AAsteroid::BeginPlay()
 {
     Super::BeginPlay();
 
- 
+    CurrentTime = 0;
 }
 
 // Called every frame
@@ -87,7 +87,6 @@ void AAsteroid::Move(float DeltaTime)
     SetActorLocation(Location);
 }
 
-
 void AAsteroid::SetMeshSize()
 {
     if (AsteroidSize == 1)
@@ -104,10 +103,11 @@ int AAsteroid::GetNumberOfAsteroids()
 {
     return AAsteroid::NumberOfAsteroids;
 }
-
-/*
-
-
-
-
-*/
+int AAsteroid::GetAsteroidSize()
+{
+    return this->AsteroidSize;
+}
+void AAsteroid::SetAsteroidSize(int Size)
+{
+    this->AsteroidSize = Size;
+}

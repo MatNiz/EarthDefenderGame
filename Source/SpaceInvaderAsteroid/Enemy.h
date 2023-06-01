@@ -19,22 +19,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly)
-		TSubclassOf<class AEnemyProjectile> ProjectileClass;
-
-	UPROPERTY(EditDefaultsOnly)
-		TSubclassOf<class AMyPlayer> MyPlayer;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* StaticMeshComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<class AEnemyProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float EnemyRadius = 800; //in cm
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float CurrentAngle = 0; //in degrees
-
-	float CurrentAngleInRadians;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float EnemyMovementSpeed = 0.1;
@@ -48,13 +43,11 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Shooting")
 		int EnemyChanceToShoot = 20; //in %
 
+	float CurrentAngleInRadians;
 	float CurrentTimeMove;
 	float CurrentTimeShoot;
 
 	bool MoveClockwise;
-
-	FRandomStream RandStream;
-
 
 public:	
 	// Called every frame

@@ -13,23 +13,13 @@ APlayerProjectile::APlayerProjectile()
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
     RootComponent = StaticMeshComponent;
 
-//    StaticMeshComponent->OnComponentHit.AddDynamic(this, &AMyActor::OnCollisionDetected);
 }
 
 // Called when the game starts or when spawned
 void APlayerProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-
- //   StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &AMyActor::OnOverlapBegin);
-
     CurrentTime = 0;
-}
-
-void APlayerProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-
-
 }
 
 // Called every frame
@@ -42,7 +32,6 @@ void APlayerProjectile::Tick(float DeltaTime)
 
 void APlayerProjectile::Move(float DeltaTime)
 {
- 
     FRotator Rotation = GetActorRotation();
     FVector Location = GetActorLocation();
 
@@ -59,19 +48,6 @@ void APlayerProjectile::Move(float DeltaTime)
         Destroy();
     }
 
-
     //    FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), Direction.X, Direction.Y, Direction.Z);
 //   GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 }
-
-/*
-void APlayerProjectile::OnCollisionDetected(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
-{
-    // SprawdŸ, czy zderzaj¹cy siê obiekt jest obiektem konkretnej klasy
-    if (OtherActor && OtherActor->IsA(AMyOtherActor::StaticClass()))
-    {
-        Destroy();
-    }
-}
-*/

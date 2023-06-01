@@ -33,7 +33,7 @@ void AAsteroidSpawner::Tick(float DeltaTime)
 
 void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 {
-	if (CurrentNumberOfAsteroids < SpawnLimit && CurrentTime >= SpawnInterval) //docelowo zamiast 0 liczba wszystkich asteroid, find actor by class a potem policz ile ich jest
+	if (CurrentNumberOfAsteroids < SpawnLimit && CurrentTime >= SpawnInterval)
 	{
 		//choosing location and rotation to spawn
 		float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
@@ -71,33 +71,30 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 			NewAsteroid->SetAsteroidSize(1);
 			
-			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "Small");
+//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "Small");
 		}
 		else if (randNum3 == 2) {
 
 			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 			NewAsteroid->SetAsteroidSize(2);
 
-			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "medium");
+//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "medium");
 
 		}
 		else{
 			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
 			NewAsteroid->SetAsteroidSize(3);
 
-			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "big");
+//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "big");
 		}
-
 
 		CurrentTime = 0;
 	}
+
 
 	CurrentNumberOfAsteroids = AAsteroid::GetNumberOfAsteroids();
 	FString FloatString = FString::Printf(TEXT("%d"), CurrentNumberOfAsteroids);
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
-
 	CurrentTime += DeltaTime;
 }
-
-int AAsteroid::NumberOfAsteroids = 0;

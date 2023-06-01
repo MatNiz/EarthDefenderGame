@@ -19,6 +19,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		UStaticMeshComponent* StaticMeshComponent;
+
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float EnemyProjectileSpeed = 500;
 
@@ -26,9 +29,6 @@ protected:
 		float EnemyProjectileLifeTime = 10; //in seconds
 
 	float CurrentTime;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* StaticMeshComponent;
 
 public:	
 	// Called every frame
