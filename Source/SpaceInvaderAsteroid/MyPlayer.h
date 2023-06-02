@@ -32,7 +32,7 @@ protected:
 		float PlayerMovementSpeed = 0.02;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float PlayerRotationSpeed = 1;
+		float PlayerRotationSpeed = 0.7;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 		int CurrentHP = 3;

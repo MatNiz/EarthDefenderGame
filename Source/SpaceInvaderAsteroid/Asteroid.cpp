@@ -21,8 +21,6 @@ AAsteroid::AAsteroid()
 void AAsteroid::BeginPlay()
 {
     Super::BeginPlay();
-
-    CurrentTime = 0;
 }
 
 // Called every frame
@@ -33,13 +31,6 @@ void AAsteroid::Tick(float DeltaTime)
     SetMeshSize();
     Move(DeltaTime);
 
-    CurrentTime += DeltaTime;
-
-    if (CurrentTime >= AsteroidLifeTime)
-    {
-        //Decay();
-        CurrentTime = 0;
-    }
 }
 
 void AAsteroid::Decay()

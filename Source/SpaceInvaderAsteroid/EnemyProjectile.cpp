@@ -38,9 +38,7 @@ void AEnemyProjectile::Move(float DeltaTime)
 {
 
     FVector Location = GetActorLocation();
-
     FVector DirectionToOrigin = FVector::ZeroVector - Location;
-
     FVector Direction = UKismetMathLibrary::Normal(DirectionToOrigin);
     
     Location += Direction * DeltaTime * EnemyProjectileSpeed;
@@ -48,19 +46,7 @@ void AEnemyProjectile::Move(float DeltaTime)
 
     CurrentTime += DeltaTime;
 
-    if (CurrentTime >= EnemyProjectileLifeTime)
-    {
-        Destroy();
-    }
-
-    if (Location.X <= 10 && Location.Y <= 10)
-    {
-        Destroy();
-    }
-
-
     //    FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), Direction.X, Direction.Y, Direction.Z);
 //   GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 
 }

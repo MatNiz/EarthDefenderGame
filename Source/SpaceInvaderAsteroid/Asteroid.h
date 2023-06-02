@@ -26,15 +26,11 @@ protected:
 		TSubclassOf<class AAsteroid> AsteroidClass;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float AsteroidSpeed = 50;
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float AsteroidLifeTime = 6;
+		float AsteroidSpeed = 40;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 		int MapSize = 1000;
 	
-	float CurrentTime;
 	int AsteroidSize;
 	static int NumberOfAsteroids;
 

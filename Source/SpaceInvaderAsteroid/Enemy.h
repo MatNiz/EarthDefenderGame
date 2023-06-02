@@ -26,25 +26,22 @@ protected:
 		TSubclassOf<class AEnemyProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyRadius = 800; //in cm
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
 		float CurrentAngle = 0; //in degrees
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyMovementSpeed = 0.03;
+		float EnemyMovementSpeed = 0.05;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float TimeToChangeDirection = 3; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float TimeToJump = 20; //in seconds
+		float TimeToJump = 30; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
 		float EnemyShootingInterval = 2; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		int EnemyChanceToShoot = 1; //in %
+		int EnemyChanceToShoot = 8; //in %
 
 	float CurrentAngleInRadians;
 	float CurrentTimeMove;
@@ -60,5 +57,8 @@ public:
 	void Move(float DeltaTime);
 
 	void Shoot(float DeltaTime);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+		float EnemyRadius = 800; //in cm
 
 };

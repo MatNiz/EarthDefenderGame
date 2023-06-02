@@ -63,15 +63,7 @@ void AEnemy::Move(float DeltaTime)
 	{
 		CurrentTimeJump = 0;
 		EnemyRadius -= 100;
-
-		if (EnemyRadius <= 200) // MyPlayer.GetDefaultObject()->GetRadius()
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, "Koniec gry");
-
-		}
 	}
-
-
 
 	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.01f) * EnemyRadius;
 	SetActorLocation(NewLocation);

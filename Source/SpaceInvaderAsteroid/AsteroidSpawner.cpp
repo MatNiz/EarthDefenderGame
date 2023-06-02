@@ -20,6 +20,7 @@ void AAsteroidSpawner::BeginPlay()
 	Super::BeginPlay();
 
 	CurrentTime = 0;
+	SpawnAsteroid();
 }
 
 // Called every frame
@@ -27,19 +28,23 @@ void AAsteroidSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	SpawnAsteroid(DeltaTime);
+	if (CurrentTime >= SpawnInterval)
+	{
+		SpawnAsteroid();
+		CurrentTime = 0;
+	}
+
+	CurrentTime += DeltaTime;
 
 }
 
-void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
+void AAsteroidSpawner::SpawnAsteroid()
 {
-	if (CurrentTime >= SpawnInterval) //CurrentNumberOfAsteroids < SpawnLimit && 
-	{
-		//choosing location and rotation to spawn
-		float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
-		float randNum2 = FMath::RandRange(1, 4);; 	//Random number between 1 and 4 - choose wich quarter
+	//choosing location and rotation to spawn
+	float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
+	float randNum2 = FMath::RandRange(1, 4);; 	//Random number between 1 and 4 - choose wich quarter
 
-		FRotator SpawnRotation = FRotator(0, randNum1, randNum1);
+	FRotator SpawnRotation = FRotator(0, randNum1, randNum1);
 
 		FVector SpawnLocation;
 
@@ -87,14 +92,9 @@ void AAsteroidSpawner::SpawnAsteroid(float DeltaTime)
 
 //			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "big");
 		}
-
-		CurrentTime = 0;
-	}
-
-
+	
 	CurrentNumberOfAsteroids = AAsteroid::GetNumberOfAsteroids();
 //	FString FloatString = FString::Printf(TEXT("%d"), CurrentNumberOfAsteroids);
 //	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
-	CurrentTime += DeltaTime;
 }

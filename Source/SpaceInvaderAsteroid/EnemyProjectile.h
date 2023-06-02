@@ -23,10 +23,7 @@ protected:
 		UStaticMeshComponent* StaticMeshComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyProjectileSpeed = 500;
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyProjectileLifeTime = 10; //in seconds
+		float EnemyProjectileSpeed = 300;
 
 	float CurrentTime;
 
