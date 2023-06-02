@@ -2,8 +2,6 @@
 
 
 #include "AsteroidSpawner.h"
-#include "PlayerProjectile.h"
-#include "EnemyProjectile.h"
 #include "Asteroid.h"
 
 // Sets default values
@@ -19,81 +17,58 @@ void AAsteroidSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CurrentTime = 0;
-	SpawnAsteroid();
+//	for (int i = 0; i < NumberOfBeginingAsteroids; i++) SpawnAsteroid();
+
+	FTimerHandle TimerHandle;
+	GetWorldTimerManager().SetTimer(TimerHandle, this, &AAsteroidSpawner::SpawnAsteroid, SpawnInterval, true, 0.0f);
 }
 
 // Called every frame
 void AAsteroidSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	if (CurrentTime >= SpawnInterval)
-	{
-		SpawnAsteroid();
-		CurrentTime = 0;
-	}
-
-	CurrentTime += DeltaTime;
-
 }
 
 void AAsteroidSpawner::SpawnAsteroid()
 {
 	//choosing location and rotation to spawn
 	float randNum1 = rand() % (2 * (MapSize - 100)) - (MapSize - 100); //Random number between -size map and +size of map
-	float randNum2 = FMath::RandRange(1, 4);; 	//Random number between 1 and 4 - choose wich quarter
+	float randNum2 = FMath::RandRange(1, 4);; 	//Random number between 1 and 4 - choose wich quarter of board
 
 	FRotator SpawnRotation = FRotator(0, randNum1, randNum1);
 
-		FVector SpawnLocation;
+	FVector SpawnLocation;
 
-		if (randNum2 == 1) {
-			SpawnLocation = FVector((MapSize-100), randNum1, 50);
+	if (randNum2 == 1) {
+		SpawnLocation = FVector((MapSize-100), randNum1, 50);
+	}
+	else if (randNum2 == 2) {
+		SpawnLocation = FVector(-(MapSize - 100), randNum1, 50);
+	}
+	else if (randNum2 == 3) {
+		SpawnLocation = FVector(randNum1, -(MapSize - 100), 50);
+	}
+	else {
+		SpawnLocation = FVector(randNum1, (MapSize - 100), 50);
+	}
 
-		}
-		else if (randNum2 == 2) {
-			SpawnLocation = FVector(-(MapSize - 100), randNum1, 50);
+	//choosing size of asteroid
+	int randNum3 = FMath::RandRange(1, 3);
 
-		}
-		else if (randNum2 == 3) {
-			SpawnLocation = FVector(randNum1, -(MapSize - 100), 50);
-
-		}
-		else {
-			SpawnLocation = FVector(randNum1, (MapSize - 100), 50);
-
-		}
-
-//		FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), SpawnLocation.X, SpawnLocation.Y, SpawnLocation.Z);
-//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
-
-		//choosing size of asteroid
-		int randNum3 = FMath::RandRange(1, 3);
-
-		if (randNum3 == 1) {
-			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
-			NewAsteroid->SetAsteroidSize(1);
-			
-//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "Small");
-		}
-		else if (randNum3 == 2) {
-
-			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
-			NewAsteroid->SetAsteroidSize(2);
-
-//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "medium");
-
-		}
-		else{
-			AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
-			NewAsteroid->SetAsteroidSize(3);
-
-//			GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "big");
-		}
+	if (randNum3 == 1) {
+		AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+		NewAsteroid->SetAsteroidSize(1);
+	}
+	else if (randNum3 == 2) {
+		AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+		NewAsteroid->SetAsteroidSize(2);
+	}
+	else{
+		AAsteroid* NewAsteroid = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, SpawnLocation, SpawnRotation);
+		NewAsteroid->SetAsteroidSize(3);
+	}
 	
-	CurrentNumberOfAsteroids = AAsteroid::GetNumberOfAsteroids();
+//	CurrentNumberOfAsteroids = AAsteroid::GetNumberOfAsteroids();
 //	FString FloatString = FString::Printf(TEXT("%d"), CurrentNumberOfAsteroids);
 //	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 

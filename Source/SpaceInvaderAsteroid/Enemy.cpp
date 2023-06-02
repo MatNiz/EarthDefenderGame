@@ -23,12 +23,15 @@ void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CurrentTimeMove = 0;
-	CurrentTimeShoot = 0;
-	CurrentTimeJump = 0;
+	FTimerHandle TimerHandle1;
+	GetWorldTimerManager().SetTimer(TimerHandle1, this, &AEnemy::Jump, TimeToJump, true, 0.0f);
+	FTimerHandle TimerHandle2;
+	GetWorldTimerManager().SetTimer(TimerHandle2, this, &AEnemy::ChangeDirections, TimeToChangeDirection, true, 0.0f);
+	FTimerHandle TimerHandle3;
+	GetWorldTimerManager().SetTimer(TimerHandle3, this, &AEnemy::Shoot, EnemyShootingInterval, true, 0.0f);
+
 	MoveClockwise = 1;
 	CurrentAngleInRadians = FMath::DegreesToRadians(CurrentAngle);
-
 }
 
 // Called every frame
@@ -37,7 +40,6 @@ void AEnemy::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	Move(DeltaTime);
-	Shoot(DeltaTime);
 }
 
 void AEnemy::Move(float DeltaTime)
@@ -53,42 +55,26 @@ void AEnemy::Move(float DeltaTime)
 		CurrentAngleInRadians -= DeltaTime * EnemyMovementSpeed;
 	}
 
-	if (CurrentTimeMove >= TimeToChangeDirection)
-	{
-		MoveClockwise = !MoveClockwise;
-		CurrentTimeMove = 0;
-	}
-
-	if (CurrentTimeJump >= TimeToJump)
-	{
-		CurrentTimeJump = 0;
-		EnemyRadius -= 100;
-	}
-
 	FVector NewLocation = FVector(FMath::Cos(CurrentAngleInRadians), FMath::Sin(CurrentAngleInRadians), 0.01f) * EnemyRadius;
 	SetActorLocation(NewLocation);
-
-	CurrentTimeMove += DeltaTime;
-	CurrentTimeJump += DeltaTime;
-
-//	FString FloatString = FString::Printf(TEXT("%.2f"), CurrentTimeMove);
-//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-
 }
 
-void AEnemy::Shoot(float DeltaTime)
+void AEnemy::Jump()
 {
-	if (CurrentTimeShoot >= EnemyShootingInterval)
-	{
-		int RandomNumber = FMath::RandRange(0, 100);
-
-		if (EnemyChanceToShoot >= RandomNumber)
-		{
-			GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, GetActorTransform());
-		}
-		CurrentTimeShoot = 0;
-	}
-
-	CurrentTimeShoot += DeltaTime;
+	EnemyRadius -= 100;
 }
 
+void AEnemy::ChangeDirections()
+{
+	MoveClockwise = !MoveClockwise;
+}
+
+void AEnemy::Shoot()
+{
+	float RandomNumber = FMath::FRandRange(0, 100);
+
+	if (EnemyChanceToShoot >= RandomNumber)
+	{
+		GetWorld()->SpawnActor<AEnemyProjectile>(ProjectileClass, GetActorTransform());
+	}
+}

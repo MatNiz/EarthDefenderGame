@@ -12,9 +12,10 @@ APlayerProjectile::APlayerProjectile()
 	PrimaryActorTick.bCanEverTick = true;
    
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
+    RootComponent = StaticMeshComponent;
+
 //    StaticMeshComponent->BodyInstance.SetCollisionProfileName("Projectile");
 //    StaticMeshComponent->OnComponentHit.AddDynamic(this, &APlayerProjectile::OnHit);
-    RootComponent = StaticMeshComponent;
 //    StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &APlayerProjectile::OnOverlapBegin);
 }
 
@@ -29,7 +30,6 @@ void APlayerProjectile::BeginPlay()
 void APlayerProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
- //   OnHit(UPrimitiveComponent * HitComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, FVector NormalImpulse, const FHitResult & Hit);
     Move(DeltaTime);
 }
 

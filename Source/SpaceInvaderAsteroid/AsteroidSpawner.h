@@ -26,13 +26,15 @@ protected:
 		float SpawnInterval = 5;// in seconds
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		float SpawnLimit = 15;
+		int NumberOfBeginingAsteroids = 2;
+
+//	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
+//		float SpawnLimit = 15;
 
 	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
 		int MapSize = 1000;// in cm
 
-	int CurrentNumberOfAsteroids;
-	float CurrentTime;
+//	int CurrentNumberOfAsteroids;
 
 public:	
 	// Called every frame

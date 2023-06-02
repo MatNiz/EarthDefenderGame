@@ -12,7 +12,6 @@ AEnemyProjectile::AEnemyProjectile()
 
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	RootComponent = StaticMeshComponent;
-
 }
 
 // Called when the game starts or when spawned
@@ -33,10 +32,8 @@ void AEnemyProjectile::Tick(float DeltaTime)
 
 }
 
-
 void AEnemyProjectile::Move(float DeltaTime)
 {
-
     FVector Location = GetActorLocation();
     FVector DirectionToOrigin = FVector::ZeroVector - Location;
     FVector Direction = UKismetMathLibrary::Normal(DirectionToOrigin);
@@ -45,8 +42,5 @@ void AEnemyProjectile::Move(float DeltaTime)
     SetActorLocation(Location);
 
     CurrentTime += DeltaTime;
-
-    //    FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), Direction.X, Direction.Y, Direction.Z);
-//   GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
 }

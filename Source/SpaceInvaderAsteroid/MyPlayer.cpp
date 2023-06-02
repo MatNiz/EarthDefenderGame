@@ -3,8 +3,7 @@
 
 #include "MyPlayer.h"
 #include "PlayerProjectile.h"
-#include "Enemy.h"
-#include "Asteroid.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -24,14 +23,12 @@ void AMyPlayer::BeginPlay()
 	Super::BeginPlay();
 
 	CurrentAngle = 0.0f;
-	CurrentYRotation = 0.0f;
 }
 
 // Called every frame
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -41,18 +38,13 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayer::Shoot);
 	PlayerInputComponent->BindAxis("Move", this, &AMyPlayer::Move);
-	PlayerInputComponent->BindAxis("Rotate", this, &AMyPlayer::Rotate);
 }
 
 void AMyPlayer::Shoot()
 {
 	FTransform MyTransform = GetActorTransform();
-	MyTransform.SetLocation(MyTransform.GetLocation() + FVector(0, 0, 20));
+	MyTransform.SetLocation(MyTransform.GetLocation() + FVector(0, 0, 30));
 	GetWorld()->SpawnActor<APlayerProjectile>(ProjectileClass, MyTransform);
-
-	//	FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), Direction.X, Direction.Y, Direction.Z);
-	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
-	//		GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Red, "Shoot");
 }
 
 void AMyPlayer::Move(float Value)
@@ -62,24 +54,9 @@ void AMyPlayer::Move(float Value)
 		CurrentAngle += Value * PlayerMovementSpeed;
 
 		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.1f) * PlayerRadius;
-
 		SetActorLocation(NewLocation);
-	}
-}
 
-void AMyPlayer::Rotate(float Value)
-{
-	if ((Controller != nullptr) && (Value != 0.0f))
-	{
-		CurrentYRotation += Value * PlayerRotationSpeed;
-
-		FRotator NewRotation = FRotator(0, CurrentYRotation, 0);
-
+		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, GetActorLocation());
 		SetActorRotation(NewRotation);
 	}
-}
-
-float AMyPlayer::GetRadius()
-{
-	return PlayerRadius;
 }

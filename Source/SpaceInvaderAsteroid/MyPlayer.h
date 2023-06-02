@@ -31,18 +31,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 		float PlayerMovementSpeed = 0.02;
 
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float PlayerRotationSpeed = 0.7;
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		int CurrentHP = 3;
-
 	float CurrentAngle;
-	float CurrentYRotation;
 
 	void Shoot();
 	void Move(float Value);
-	void Rotate(float Value);
 
 
 public:
@@ -52,5 +44,4 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	float GetRadius();
 };

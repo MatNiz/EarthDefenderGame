@@ -31,6 +31,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float EnemyMovementSpeed = 0.05;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+		float EnemyRadius = 800; //in cm
+
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float TimeToChangeDirection = 3; //in seconds
 
@@ -41,13 +44,9 @@ protected:
 		float EnemyShootingInterval = 2; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		int EnemyChanceToShoot = 8; //in %
+		float EnemyChanceToShoot = 8; //in %
 
 	float CurrentAngleInRadians;
-	float CurrentTimeMove;
-	float CurrentTimeShoot;
-	float CurrentTimeJump;
-
 	bool MoveClockwise;
 
 public:	
@@ -55,10 +54,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void Move(float DeltaTime);
-
-	void Shoot(float DeltaTime);
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-		float EnemyRadius = 800; //in cm
-
+	void Jump();
+	void ChangeDirections();
+	void Shoot();
 };

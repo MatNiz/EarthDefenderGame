@@ -14,7 +14,6 @@ AAsteroid::AAsteroid()
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
     RootComponent = StaticMeshComponent;
     NumberOfAsteroids += 1;
-
 }
 
 // Called when the game starts or when spawned
@@ -61,7 +60,6 @@ void AAsteroid::Decay()
 
 void AAsteroid::Move(float DeltaTime)
 {
-
     FRotator Rotation = GetActorRotation();
     FVector Location = GetActorLocation();
 
@@ -69,7 +67,6 @@ void AAsteroid::Move(float DeltaTime)
     const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 
     Location += Direction * DeltaTime * AsteroidSpeed;
-
 
     if (Location.X >= MapSize) Location.X = -(MapSize - 100); if (Location.X <= -MapSize) Location.X = (MapSize - 100);
     if (Location.Y >= MapSize) Location.Y = -(MapSize - 100); if (Location.Y <= -MapSize) Location.Y = (MapSize - 100);
