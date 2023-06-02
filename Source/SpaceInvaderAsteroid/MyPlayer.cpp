@@ -21,7 +21,7 @@ AMyPlayer::AMyPlayer()
 void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(PlayerRadius, 0, 10));
+	SetActorLocation(FVector(PlayerRadius, 0, 2));
 
 	CurrentAngle = 0.0f;
 }
@@ -44,7 +44,7 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AMyPlayer::Shoot()
 {
 	FTransform MyTransform = GetActorTransform();
-	MyTransform.SetLocation(MyTransform.GetLocation() + FVector(0, 0, 10));
+	MyTransform.SetLocation(MyTransform.GetLocation() + FVector(0, 0, 30));
 	GetWorld()->SpawnActor<APlayerProjectile>(ProjectileClass, MyTransform);
 }
 
@@ -54,7 +54,7 @@ void AMyPlayer::Move(float Value)
 	{
 		CurrentAngle += Value * PlayerMovementSpeed;
 
-		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.1f) * PlayerRadius;
+		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.02f) * PlayerRadius;
 		SetActorLocation(NewLocation);
 
 		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, GetActorLocation());

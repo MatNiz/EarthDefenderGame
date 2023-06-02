@@ -4,7 +4,6 @@
 #include "Enemy.h"
 #include "EnemyProjectile.h"
 #include "Math/UnrealMathUtility.h"
-#include "MyPlayer.h"
 #include "Math/RandomStream.h"
 
 // Sets default values
@@ -44,8 +43,6 @@ void AEnemy::Tick(float DeltaTime)
 
 void AEnemy::Move(float DeltaTime)
 {
-	FVector Location = GetActorLocation();
-
 	if (MoveClockwise)
 	{
 		CurrentAngleInRadians += DeltaTime * EnemyMovementSpeed;

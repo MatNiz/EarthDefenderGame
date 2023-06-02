@@ -32,7 +32,6 @@ protected:
 		int MapSize = 1000;
 	
 	int AsteroidSize;
-	static int NumberOfAsteroids;
 
 public:
 	// Called every frame
@@ -48,7 +47,4 @@ public:
 	int GetAsteroidSize();
 	void SetAsteroidSize(int Size);
 
-	static int GetNumberOfAsteroids();
 };
-
-int AAsteroid::NumberOfAsteroids = 0;

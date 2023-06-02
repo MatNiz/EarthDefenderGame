@@ -9,11 +9,8 @@ AAsteroid::AAsteroid()
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
 
- //   Asteroids.Add(this);
-
     StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
     RootComponent = StaticMeshComponent;
-    NumberOfAsteroids += 1;
 }
 
 // Called when the game starts or when spawned
@@ -34,27 +31,37 @@ void AAsteroid::Tick(float DeltaTime)
 
 void AAsteroid::Decay()
 {
-    FVector Location = GetActorLocation();
-
-    float randNum1 = FMath::RandRange(0, 360);
-    float randNum2 = FMath::RandRange(0, 360);
-
-    FRotator SpawnRotation1 = FRotator(0, randNum1, randNum2);
-    FRotator SpawnRotation2 = FRotator(0, randNum2, randNum1);
-
     if (AsteroidSize == 1)
     {
-        AAsteroid::NumberOfAsteroids--;
         Destroy();
+//        GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, "Zniszczenie malej");
     }
     else
     {
         AsteroidSize--;
 
-        AAsteroid* NewAsteroid1 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, Location, SpawnRotation1);
+        double randNum1 = FMath::RandRange(0, 180);
+        double randNum2 = FMath::RandRange(180, 360);
+
+ //       FString FloatString = FString::Printf(TEXT("%f, %f"), randNum1, randNum2);
+ //       GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
+
+        FActorSpawnParameters spawnParams;
+        spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+        FTransform NewTransform = GetActorTransform();
+        NewTransform.SetRotation(FQuat::MakeFromEuler(FVector(0.0f, randNum1, 0.0f)));
+
+        AAsteroid* NewAsteroid1 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, NewTransform, spawnParams);
         NewAsteroid1->SetAsteroidSize(AsteroidSize);
-        AAsteroid* NewAsteroid2 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, Location, SpawnRotation1);
+
+
+        NewTransform.SetRotation(FQuat::MakeFromEuler(FVector(20, randNum2, 75)));
+        
+        AAsteroid* NewAsteroid2 = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, NewTransform, spawnParams);
         NewAsteroid2->SetAsteroidSize(AsteroidSize);
+
+        Destroy();
     }
 }
 
@@ -71,6 +78,7 @@ void AAsteroid::Move(float DeltaTime)
     if (Location.X >= MapSize) Location.X = -(MapSize - 100); if (Location.X <= -MapSize) Location.X = (MapSize - 100);
     if (Location.Y >= MapSize) Location.Y = -(MapSize - 100); if (Location.Y <= -MapSize) Location.Y = (MapSize - 100);
 
+    Location.Z = 50;
     SetActorLocation(Location);
 }
 
@@ -78,18 +86,15 @@ void AAsteroid::SetMeshSize()
 {
     if (AsteroidSize == 1)
     {
-        StaticMeshComponent->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
+        SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
     }
     else if (AsteroidSize == 2)
     {
-        StaticMeshComponent->SetRelativeScale3D(FVector(0.7f, 0.7f, 0.7f));
+        SetActorScale3D(FVector(0.7f, 0.7f, 0.7f));
+//        StaticMeshComponent->SetRelativeScale3D(FVector(0.7f, 0.7f, 0.7f));
     }
 }
 
-int AAsteroid::GetNumberOfAsteroids()
-{
-    return AAsteroid::NumberOfAsteroids;
-}
 int AAsteroid::GetAsteroidSize()
 {
     return this->AsteroidSize;
