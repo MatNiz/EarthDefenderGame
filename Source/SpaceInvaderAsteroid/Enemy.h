@@ -41,10 +41,10 @@ protected:
 		float TimeToJump = 20; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		float EnemyShootingInterval = 1; //in seconds
+		float EnemyShootingInterval = 2; //in seconds
 
 	UPROPERTY(EditAnywhere, Category = "Shooting")
-		int EnemyChanceToShoot = 5; //in %
+		int EnemyChanceToShoot = 1; //in %
 
 	float CurrentAngleInRadians;
 	float CurrentTimeMove;

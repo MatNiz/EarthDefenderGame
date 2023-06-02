@@ -14,6 +14,8 @@ AMyPlayer::AMyPlayer()
 
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	RootComponent = StaticMeshComponent;
+
+//	ProjectileClass = PlayerProjectile;
 }
 
 // Called when the game starts or when spawned
@@ -44,7 +46,9 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AMyPlayer::Shoot()
 {
-	GetWorld()->SpawnActor<APlayerProjectile>(ProjectileClass, GetActorTransform());
+	FTransform MyTransform = GetActorTransform();
+	MyTransform.SetLocation(MyTransform.GetLocation() + FVector(0, 0, 20));
+	GetWorld()->SpawnActor<APlayerProjectile>(ProjectileClass, MyTransform);
 
 	//	FString FloatString = FString::Printf(TEXT("%.2f, %.2f, %.2f"), Direction.X, Direction.Y, Direction.Z);
 	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);

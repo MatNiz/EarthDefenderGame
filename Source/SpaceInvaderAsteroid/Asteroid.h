@@ -26,13 +26,13 @@ protected:
 		TSubclassOf<class AAsteroid> AsteroidClass;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float AsteroidSpeed = 100;
+		float AsteroidSpeed = 50;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 		float AsteroidLifeTime = 6;
 
 	UPROPERTY(EditAnywhere, Category = "Parameters")
-		int MapSize = 1500;
+		int MapSize = 1000;
 	
 	float CurrentTime;
 	int AsteroidSize;
@@ -42,6 +42,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "MyCategory")
 	void Decay();
 
 	void Move(float DeltaTime);
