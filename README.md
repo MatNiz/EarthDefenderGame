@@ -1,4 +1,6 @@
-This game is comibination of Space Invaders and Asteroid games.
+Made in UE 5.1
+
+This game project is comibination of Space Invaders and Asteroid games.
 
 A-D or Left-Right to move
 
