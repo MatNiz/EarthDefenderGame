@@ -38,7 +38,7 @@ void AEnemyProjectile::Move(float DeltaTime)
     FVector DirectionToOrigin = FVector::ZeroVector - Location;
     FVector Direction = UKismetMathLibrary::Normal(DirectionToOrigin);
     
-    Location += Direction * DeltaTime * EnemyProjectileSpeed;
+    Location += Direction * DeltaTime * Speed;
     SetActorLocation(Location);
 
     CurrentTime += DeltaTime;

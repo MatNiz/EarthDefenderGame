@@ -34,7 +34,6 @@ void AAsteroid::Decay()
     if (AsteroidSize == 1)
     {
         Destroy();
-//        GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, "Zniszczenie malej");
     }
     else
     {
@@ -43,8 +42,6 @@ void AAsteroid::Decay()
         double randNum1 = FMath::RandRange(0, 180);
         double randNum2 = FMath::RandRange(180, 360);
 
- //       FString FloatString = FString::Printf(TEXT("%f, %f"), randNum1, randNum2);
- //       GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FloatString);
 
         FActorSpawnParameters spawnParams;
         spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
@@ -91,7 +88,6 @@ void AAsteroid::SetMeshSize()
     else if (AsteroidSize == 2)
     {
         SetActorScale3D(FVector(0.7f, 0.7f, 0.7f));
-//        StaticMeshComponent->SetRelativeScale3D(FVector(0.7f, 0.7f, 0.7f));
     }
 }
 

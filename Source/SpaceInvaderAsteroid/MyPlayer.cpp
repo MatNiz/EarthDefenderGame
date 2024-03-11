@@ -21,7 +21,7 @@ AMyPlayer::AMyPlayer()
 void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(PlayerRadius, 0, 2));
+	SetActorLocation(FVector(MovementRadius, 0, 2));
 
 	CurrentAngle = 0.0f;
 }
@@ -52,9 +52,9 @@ void AMyPlayer::Move(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		CurrentAngle += Value * PlayerMovementSpeed;
+		CurrentAngle += Value * MovementSpeed;
 
-		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.02f) * PlayerRadius;
+		FVector NewLocation = FVector(FMath::Cos(CurrentAngle), FMath::Sin(CurrentAngle), 0.02f) * MovementRadius;
 		SetActorLocation(NewLocation);
 
 		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, GetActorLocation());

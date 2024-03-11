@@ -19,42 +19,40 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* StaticMeshComponent;
-
-	UPROPERTY(EditDefaultsOnly)
-		TSubclassOf<class AEnemyProjectile> ProjectileClass;
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float CurrentAngle = 0; //in degrees
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyMovementSpeed = 0.05;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-		float EnemyRadius = 800; //in cm
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float TimeToChangeDirection = 3; //in seconds
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float TimeToJump = 30; //in seconds
-
-	UPROPERTY(EditAnywhere, Category = "Shooting")
-		float EnemyShootingInterval = 2; //in seconds
-
-	UPROPERTY(EditAnywhere, Category = "Shooting")
-		float EnemyChanceToShoot = 8; //in %
-
-	float CurrentAngleInRadians;
-	bool MoveClockwise;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void Move(float DeltaTime);
 	void Jump();
 	void ChangeDirections();
 	void Shoot();
+
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<class AEnemyProjectile> ProjectileClass;
+	UPROPERTY(EditInstanceOnly, Category = "Parameters")
+		float StartingAngleInDegrees = 0;
+	UPROPERTY(EditInstanceOnly, Category = "Parameters")
+		float StartngRadius = 800;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float MovementSpeed = 0.05;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float SecondsToChangeDirection = 3;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float SecondsToJump = 30;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float ShootingIntervalInSeconds = 2;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float PercentChanceToShoot = 8;
+
+	float CurrentAngleInRadians;
+	bool MoveClockwise;
+
+
+	void Move(float DeltaTime);
+
 };

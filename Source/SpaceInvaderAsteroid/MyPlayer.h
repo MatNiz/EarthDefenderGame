@@ -19,22 +19,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* StaticMeshComponent;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ProjectileClass")
-		TSubclassOf<class APlayerProjectile> ProjectileClass;
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float PlayerRadius = 200; //in cm
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float PlayerMovementSpeed = 0.02;
-
-	float CurrentAngle;
-
-	void Shoot();
-	void Move(float Value);
 
 
 public:
@@ -44,4 +28,20 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<class APlayerProjectile> ProjectileClass;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float MovementRadius;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float MovementSpeed;
+
+	float CurrentAngle;
+
+
+	void Shoot();
+	void Move(float Value);
 };

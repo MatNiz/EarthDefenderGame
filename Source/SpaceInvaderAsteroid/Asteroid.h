@@ -19,32 +19,32 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* StaticMeshComponent;
-
-	UPROPERTY(EditAnywhere, Category = "AsteroidClass")
-		TSubclassOf<class AAsteroid> AsteroidClass;
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		float AsteroidSpeed = 40;
-
-	UPROPERTY(EditAnywhere, Category = "Parameters")
-		int MapSize = 1000;
-	
-	int AsteroidSize;
 
 public:
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual	void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable, Category = "MyCategory")
-	void Decay();
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float AsteroidSpeed;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		int MapSize;
 
 	void Move(float DeltaTime);
 
-	void SetMeshSize();
 
+	void SetMeshSize();
 	int GetAsteroidSize();
 	void SetAsteroidSize(int Size);
 
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<class AAsteroid> AsteroidClass;
+
+	int AsteroidSize;
+
+
+	UFUNCTION(BlueprintCallable)
+		void Decay();
 };

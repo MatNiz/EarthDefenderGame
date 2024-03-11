@@ -19,26 +19,22 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = "AsteroidClass")
-		TSubclassOf<class AAsteroid> AsteroidClass;
-
-	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		float SpawnInterval = 5;// in seconds
-
-	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		int NumberOfBeginingAsteroids = 2;
-
-//	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-//		float SpawnLimit = 15;
-
-	UPROPERTY(EditAnywhere, Category = "SpawningParameters")
-		int MapSize = 1000;// in cm
-
-//	int CurrentNumberOfAsteroids;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<class AAsteroid> AsteroidClass;
+	UPROPERTY(EditInstanceOnly, Category = "Parameters")
+		float SpawnIntervalInSeconds;
+	UPROPERTY(EditInstanceOnly, Category = "Parameters")
+		int NumberOfBeginingAsteroids;
+	UPROPERTY(EditInstanceOnly, Category = "Parameters")
+		int MapSize;
+
 
 	void SpawnAsteroid();
 

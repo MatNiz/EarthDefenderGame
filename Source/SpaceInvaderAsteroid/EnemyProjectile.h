@@ -19,18 +19,22 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* StaticMeshComponent;
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float EnemyProjectileSpeed = 300;
-
-	float CurrentTime;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditDefaultsOnly, Category = "Parameters")
+		float Speed = 300;
+
+	float CurrentTime;
+
+
 	void Move(float DeltaTime);
+
 
 };
